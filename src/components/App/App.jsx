@@ -1,4 +1,3 @@
-import './App.css';
 import React, {useState, useEffect, useCallback} from 'react';
 import Api from '../../api'
 
