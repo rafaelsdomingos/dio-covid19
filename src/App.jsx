@@ -1,14 +1,10 @@
-import React, {memo,useState, useEffect, useCallback} from 'react';
+import React, { memo } from 'react';
 import { ThemeProvider, createTheme } from '@material-ui/core';
 import Home from './containers/Home'
 
 
 
-
-
 function App() {
-
-
 
   //Configuração do tema do projeto
   const theme = createTheme({
