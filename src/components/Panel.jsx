@@ -86,7 +86,7 @@ function Panel({country, data, onChange, getCovidData, updateAt}){
                     <strong>COVID-19</strong>
                 </Typography>
                 <Typography variant="h6">
-                    <strong>PAINEL CORONA VÍRUS</strong>
+                    <strong>PAINEL CORONAVÍRUS</strong>
                 </Typography>
                 
                 <Typography variant="body2" color="primary">
