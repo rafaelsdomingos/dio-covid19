@@ -21,6 +21,7 @@ function Home(){
     //configuração das variáveis que irão receber os dados da api pública
     const [data, setData] = useState({})
     const [country, setCountry] = useState('brazil')
+    const updateAt = new Date().toLocaleString()
 
     const getCovidData = useCallback((country) =>{
         Api.getCountry(country)
@@ -47,6 +48,7 @@ function Home(){
                     data={data}
                     onChange={handleChange}
                     getCovidData={getCovidData}
+                    updateAt={updateAt}
                 />
                 <Board data={data}/>
             </Container>

@@ -1,5 +1,5 @@
 import {React, memo} from "react";
-import { Grid, Paper, makeStyles, Typography, Select, MenuItem, } from "@material-ui/core";
+import { Grid, Paper, makeStyles, Typography, Select, MenuItem, Button} from "@material-ui/core";
 import COUNTRIES from '../commons/constants/countries.js'
 
 
@@ -15,10 +15,11 @@ const useStyles = makeStyles((theme) => ({
     },
     selectContainer:{
         display: 'flex',
-        width: '50%',
+        width: 340,
         justifyContent: 'space-around',
         alignItems: 'center',
-        marginTop: '30'
+        marginTop: 20,
+        gap: 10
 
     },
     menuItem:{
@@ -27,14 +28,14 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
 
     }
-
   }))
 
+const navigatorHasShare = navigator.share
 
-function Panel({country, data, onChange, getCovidData}){
 
-    const {cases, deaths, todayDeaths, todayCases, casesPerOneMillion, deathsPerOneMillion  } = data
+function Panel({country, data, onChange, getCovidData, updateAt}){
 
+    const {cases, deaths, todayDeaths, todayCases, casesPerOneMillion, deathsPerOneMillion, recovered  } = data
     const classes = useStyles();
 
     const renderCountries = (country, index) => (
@@ -46,6 +47,36 @@ function Panel({country, data, onChange, getCovidData}){
         </MenuItem>
     )
 
+    const textCovid19 = `País: ${country} - recuperados: ${recovered}`
+
+    const copyInfo = () => {
+        navigator.clipboard.writeText(textCovid19)
+    }
+
+    const shareInfo = () =>{
+        navigator.share({
+            title: `Dados do Covid19 - ${country}`,
+            text: textCovid19,
+            url: 'https://consultacovid19dio.netlify.app/'
+        })
+    }
+
+    const renderShareButton = (
+        <div>
+            <Button variant="contained" color="secondary" onClick={shareInfo}>Compartilhar</Button>
+        </div>
+    )
+    
+    const renderCopyButton = (
+        <div>
+            <Button variant="contained" color="secondary" onClick={copyInfo}>Copiar</Button>
+        </div>
+    )
+
+    
+    
+
+    
     
     return(
         <Grid container spacing={2} justifyContent="center" alignItems="center" style={{marginBottom: 10}}>
@@ -57,16 +88,17 @@ function Panel({country, data, onChange, getCovidData}){
                 <Typography variant="h6">
                     <strong>PAINEL CORONA VÍRUS</strong>
                 </Typography>
+                
+                <Typography variant="body2" color="primary">
+                        Atualizado em: <strong>{updateAt}</strong>
+                </Typography>
 
                 <div className={classes.selectContainer}>
-                    
-                    <Select onChange={onChange} labelWidth>
+                    <Select onChange={onChange} value={country} fullWidth>
                         {COUNTRIES.map(renderCountries)}
                     </Select>
-                    
-                    <Typography variant="body2">
-                        Atualizado em
-                    </Typography>
+
+                    {navigatorHasShare ? renderShareButton : renderCopyButton}
                 </div>
 
             </Paper>
