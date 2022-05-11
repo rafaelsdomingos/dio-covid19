@@ -6,12 +6,14 @@ import {
     makeStyles,
     Container,
 } from '@material-ui/core';
+import CovidBackground from '../assets/images/covid.jpg'
 
 //Configurações de Estilo da aplicação
 const useStyles = makeStyles((theme) => ({
     root:{
-      background: "#d3d3d3",
-      height: '100vh',
+      background: '#eee',
+      backgroundImage: `url(${CovidBackground})`,
+      minHeight: '100vh',
     },
   }))
 
@@ -29,13 +31,18 @@ function Home(){
         getCovidData(country)
     }, [getCovidData, country])
 
+    const handleChange = (target) => {
+        const contry = target.value
+        setCountry('china')
+    }
+
     //instanciado as configurações de estilo
     const classes = useStyles();
 
     return(
         <div className={classes.root}>
             <Container maxWidth="md">
-                <Panel />
+                <Panel country={country} onChange={handleChange} data={data} getCovidData={getCovidData}/>
                 <Board data={data}/>
             </Container>
                
