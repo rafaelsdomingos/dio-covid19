@@ -35,7 +35,7 @@ const navigatorHasShare = navigator.share
 
 function Panel({country, data, onChange, getCovidData, updateAt}){
 
-    const {cases, deaths, todayDeaths, todayCases, casesPerOneMillion, deathsPerOneMillion, recovered  } = data
+    const { recovered  } = data
     const classes = useStyles();
 
     const renderCountries = (country, index) => (
