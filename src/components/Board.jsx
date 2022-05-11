@@ -23,7 +23,7 @@ function Board({data}){
 
     const classes = useStyles();
 
-    const getValue = (value) => value ? value : <Skeleton variant="text" width={182} height={60}/>
+    // const getValue = (value) => value ? value : <Skeleton variant="text" width={182} height={60}/>
     return(
         <Grid container spacing={4} justifyContent="center">
             <Grid item xs={12} md={6}>
