@@ -1,6 +1,5 @@
 import {React, memo} from "react";
 import { Grid, Paper, Typography, makeStyles } from "@material-ui/core";
-import Skeleton from "@material-ui/lab/Skeleton"
 
 
 //Configuração CSS do componente

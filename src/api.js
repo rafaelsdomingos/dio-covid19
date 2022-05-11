@@ -11,6 +11,9 @@ async function getCountry(country){
     return await response.json()
 }
 
-export default {
+const api = {
     getCountry
 }
+
+
+export default api
