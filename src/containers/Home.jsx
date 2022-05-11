@@ -31,10 +31,10 @@ function Home(){
         getCovidData(country)
     }, [getCovidData, country])
 
-    const handleChange = (target) => {
-        const contry = target.value
-        setCountry('china')
-    }
+    const handleChange = ({target}) => {
+        const country = target.value
+        setCountry(country)
+    }   
 
     //instanciado as configurações de estilo
     const classes = useStyles();
@@ -42,7 +42,12 @@ function Home(){
     return(
         <div className={classes.root}>
             <Container maxWidth="md">
-                <Panel country={country} onChange={handleChange} data={data} getCovidData={getCovidData}/>
+                <Panel 
+                    country={country}
+                    data={data}
+                    onChange={handleChange}
+                    getCovidData={getCovidData}
+                />
                 <Board data={data}/>
             </Container>
                

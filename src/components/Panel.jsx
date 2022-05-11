@@ -1,27 +1,37 @@
 import {React, memo} from "react";
-import { Grid, Paper, makeStyles, Typography, Select, MenuItem, FormControl, Button } from "@material-ui/core";
-import COUNTRIES from '../commons/constants/countries'
-import CovidImg from '../assets/images/covid3.jpg';
+import { Grid, Paper, makeStyles, Typography, Select, MenuItem, } from "@material-ui/core";
+import COUNTRIES from '../commons/constants/countries.js'
 
 
 //Configurações de Estilo do componente
 const useStyles = makeStyles((theme) => ({
     panel:{
       width: '100%',
-      height: 300,
+      height: 200,
       display: 'flex',
-    //   flexDirection: 'column',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
     },
+    selectContainer:{
+        display: 'flex',
+        width: '50%',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginTop: '30'
+
+    },
+    menuItem:{
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-between',
+
+    }
 
   }))
 
 
-const navigatorHasShare = navigator.share;
-
-
-function Panel(country, data, onChange, getCovidData){
+function Panel({country, data, onChange, getCovidData}){
 
     const {cases, deaths, todayDeaths, todayCases, casesPerOneMillion, deathsPerOneMillion  } = data
 
@@ -29,8 +39,10 @@ function Panel(country, data, onChange, getCovidData){
 
     const renderCountries = (country, index) => (
         <MenuItem key={`country-${index}`} value={country.value}>
-            <div>{country.label}</div>
-            <img src={country.flag} alt={`Pais-${country.label}`}/>
+            <div className={classes.menuItem}>
+                <div>{country.label}</div>
+                <div><img src={country.flag} alt={`Pais-${country.label}`}/></div>
+            </div>
         </MenuItem>
     )
 
@@ -46,13 +58,16 @@ function Panel(country, data, onChange, getCovidData){
                     <strong>PAINEL CORONA VÍRUS</strong>
                 </Typography>
 
-                <Select onChange={onChange}>
-                    {COUNTRIES.map(renderCountries)}
-                </Select>
-               
-                <Typography variant="body2">
-                    Atualizado em 
-                </Typography>
+                <div className={classes.selectContainer}>
+                    
+                    <Select onChange={onChange} labelWidth>
+                        {COUNTRIES.map(renderCountries)}
+                    </Select>
+                    
+                    <Typography variant="body2">
+                        Atualizado em
+                    </Typography>
+                </div>
 
             </Paper>
         </Grid>

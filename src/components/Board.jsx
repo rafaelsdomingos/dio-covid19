@@ -7,13 +7,13 @@ import Skeleton from "@material-ui/lab/Skeleton"
 const useStyles = makeStyles((theme) => ({
     paper:{
         width: '100%', 
-        height: 200,
+        height: 150,
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        borderTopWidth: 30,
+        borderTopWidth: 20,
         borderTopStyle: 'solid'
     },
   }))
